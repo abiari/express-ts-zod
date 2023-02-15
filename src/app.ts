@@ -3,12 +3,12 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import cors from 'cors';
 
-import * as middlewares from './middlewares';
-import api from './api';
-import MessageResponse from './interfaces/MessageResponse';
+import * as middlewares from './middlewares.js';
+import router from './api/index.js';
+import MessageResponse from './interfaces/MessageResponse.js';
+import dotenv from 'dotenv';
 
-require('dotenv').config();
-
+dotenv.config();
 const app = express();
 
 app.use(morgan('dev'));
@@ -18,11 +18,11 @@ app.use(express.json());
 
 app.get<{}, MessageResponse>('/', (req, res) => {
   res.json({
-    message: '🦄🌈✨👋🌎🌍🌏✨🌈🦄',
+    message: '🦄🌈✨👋🌎🌍🌏✨🌈🦄'
   });
 });
 
-app.use('/api/v1', api);
+app.use('/api/v1', router);
 
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);

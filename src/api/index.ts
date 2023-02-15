@@ -1,13 +1,13 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 
-import MessageResponse from '../interfaces/MessageResponse';
-import emojis from './emojis';
+import MessageResponse from '../interfaces/MessageResponse.js';
+import emojis from './emojis.js';
 
 const router = express.Router();
 
-router.get<{}, MessageResponse>('/', (req, res) => {
+router.get<{}, MessageResponse>('/', (req: Request, res: Response) => {
   res.json({
-    message: 'API - 👋🌎🌍🌏',
+    message: 'API - 👋🌎🌍🌏'
   });
 });
 
